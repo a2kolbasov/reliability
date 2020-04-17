@@ -38,7 +38,7 @@ class Node:
 
         if 0 <= p <= 1:
             self.p = p
-            self.name = name
+            self.name = str(name)
         else:
             raise Exception("Неверная вероятность")
 

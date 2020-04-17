@@ -13,9 +13,8 @@ print(
 print('\n################\n')
 
 a1 = Node(0.99, 'Сервер 1')
-print(a1)
+print(a1, '\n')
+a2 = Node(0.6)
 
-a2 = Node(0.6, 'Сервер 2')
-
-print(a1 & a2)
-print(a1 | a2)
+print("Последовательно: ", a1 & a2)
+print("Параллельно: ", a1 | a2)
