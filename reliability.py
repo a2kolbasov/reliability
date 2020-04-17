@@ -35,15 +35,28 @@ class Obj:
             raise Exception("Неверная вероятность")
 
     def __add__(self, other):
-        return self or other
+        print('add')
+        return self | other
 
     def __mul__(self, other):
-        return self and other
+        print('mul')
+        return self & other
 
     def __or__(self, other):
+        print('or')
         Q = self.q * other.q
         return Obj(1 - Q)
 
     def __and__(self, other):
+        print('and')
         Q = self.q + other.q
         return Obj(1 - Q)
+
+    def __str__(self):
+        return "p = {}".format(self.p)
+
+
+p1 = Obj(0.9)
+p2 = Obj(0.7)
+
+print( p1 & p1 & (p2 | p2 | p2) )
