@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Alexander Kolbasov
+# Copyright © 2020 Aleksandr Kolbasov
 
 from reliability import Node
 
@@ -10,13 +10,13 @@ print()
 
 print(
     nodes[0] & (nodes[1] | nodes[2] | nodes[3])
-    #nodes[0] * (nodes[1] + nodes[2] + nodes[3])
+    # nodes[0] * (nodes[1] + nodes[2] + nodes[3])
 
-    ##               /---node_1---\
-    ##              |              |
-    ##  ---node_0---+----node_2----+---
-    ##              |              |
-    ##               \---node_3---/
+    #               /---node_1---\
+    #              |              |
+    #  ---node_0---+----node_2----+---
+    #              |              |
+    #               \---node_3---/
 )
 
 print('\n################\n')
