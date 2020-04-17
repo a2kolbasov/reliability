@@ -2,11 +2,12 @@
 
 
 class Node:
+    """Узел в цепи"""
 
     @property
     def p(self) -> float:
+        """Вероятность безотказной работы"""
         return self._p
-        # return
 
     @p.setter
     def p(self, probability: float):
@@ -14,49 +15,52 @@ class Node:
 
     @property
     def q(self):
+        """Вероятность отказа"""
         return 1 - self.p
 
     @q.setter
     def q(self, probability):
         self.p = 1 - probability
 
-    def __init__(self, p: float):
-        # self._p = 0.0
-
-        def valid(probability):
-            return 0 <= probability <= 1
+    def __init__(self, p: float, name: str = ''):
+        """
+        Узел в цепи
+        :param p: Вероятность безотказной работы
+        :param name: Имя узла
+        """
 
         if p is None:
-            raise Exception("Не задана ни одна вероятность")
+            raise Exception("Не задана вероятность")
 
-        if valid(p):
+        if 0 <= p <= 1:
             self.p = p
+            self.name = name
         else:
             raise Exception("Неверная вероятность")
 
     def __add__(self, other):
-        print('add')
         return self | other
 
     def __mul__(self, other):
-        print('mul')
         return self & other
 
     def __or__(self, other):
-        print('or')
-        Q = self.q * other.q
-        return Node(1 - Q)
+        """Параллельное соединение"""
+        q = self.q * other.q
+        return Node(1 - q)
 
     def __and__(self, other):
-        print('and')
-        Q = self.q + other.q
-        return Node(1 - Q)
+        """Последовательное соединение"""
+        q = self.q + other.q
+        return Node(1 - q)
 
     def __str__(self):
-        return "p = {}".format(self.p)
+        return "P{name} = {p}".format(p=self.p, name="({})".format(self.name) if self.name != '' else '')
 
 
-p1 = Node(0.9)
+p1 = Node(0.9, 'p1')
 p2 = Node(0.7)
 
+print(p1)
+print(p2)
 print( p1 & p1 & (p2 | p2 | p2) )
