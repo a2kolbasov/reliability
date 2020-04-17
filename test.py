@@ -2,19 +2,21 @@
 
 from reliability import Node
 
-nodes = Node.list(0.99, 0.98, 0.98)
+nodes = Node.list(0.99, 0.8, 0.8, 0.8)
 
 for node in nodes:
     print(node)
 print()
 
 print(
-    nodes[0] & (nodes[1] | nodes[2])
-    #nodes[0] * (nodes[1] + nodes[2])
+    nodes[0] & (nodes[1] | nodes[2] | nodes[3])
+    #nodes[0] * (nodes[1] + nodes[2] + nodes[3])
 
     ##               /---node_1---\
-    ##  ---node_0---|              |---
-    ##               \---node_2---/
+    ##              |              |
+    ##  ---node_0---+----node_2----+---
+    ##              |              |
+    ##               \---node_3---/
 )
 
 print('\n################\n')
