@@ -1,7 +1,7 @@
 # Copyright © 2020 Aleksandr Kolbasov
 
 
-class Obj:
+class Node:
 
     @property
     def p(self) -> float:
@@ -45,18 +45,18 @@ class Obj:
     def __or__(self, other):
         print('or')
         Q = self.q * other.q
-        return Obj(1 - Q)
+        return Node(1 - Q)
 
     def __and__(self, other):
         print('and')
         Q = self.q + other.q
-        return Obj(1 - Q)
+        return Node(1 - Q)
 
     def __str__(self):
         return "p = {}".format(self.p)
 
 
-p1 = Obj(0.9)
-p2 = Obj(0.7)
+p1 = Node(0.9)
+p2 = Node(0.7)
 
 print( p1 & p1 & (p2 | p2 | p2) )
