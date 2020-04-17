@@ -56,11 +56,3 @@ class Node:
 
     def __str__(self):
         return "P{name} = {p}".format(p=self.p, name="({})".format(self.name) if self.name != '' else '')
-
-
-p1 = Node(0.9, 'p1')
-p2 = Node(0.7)
-
-print(p1)
-print(p2)
-print( p1 & p1 & (p2 | p2 | p2) )
