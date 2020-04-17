@@ -6,7 +6,7 @@ class Node:
 
     @staticmethod
     def list(*probabilities):
-        return list(Node(p) for p in probabilities)
+        return list(Node(node[1], node[0]) for node in enumerate(probabilities))
 
     @property
     def p(self) -> float:

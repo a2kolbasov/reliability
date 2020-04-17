@@ -1,15 +1,21 @@
 from reliability import Node
 
-a1 = Node(0.9, 'a1')
-a2 = Node(0.7)
+nodes = Node.list(0.99, 0.98, 0.98)
 
-print(a1)
-print(a2)
-print(a1 & a2 & (a1 | a2 | a2))
-
+for node in nodes:
+    print(node)
 print()
 
-lst = Node.list(1, 0.5, 0.3, 0.4)
-for i in lst:
-    print(lst)
-print(lst)
+print(
+    nodes[0] & (nodes[1] | nodes[2])
+)
+
+print('\n################\n')
+
+a1 = Node(0.99, 'Сервер 1')
+print(a1)
+
+a2 = Node(0.6, 'Сервер 2')
+
+print(a1 & a2)
+print(a1 | a2)
