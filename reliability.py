@@ -4,6 +4,10 @@
 class Node:
     """Узел в цепи"""
 
+    @staticmethod
+    def list(*probabilities):
+        return list(Node(p) for p in probabilities)
+
     @property
     def p(self) -> float:
         """Вероятность безотказной работы"""
