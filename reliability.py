@@ -1,11 +1,18 @@
 # Copyright © 2020 Aleksandr Kolbasov
 
+"""
+Позволяет вычислять вероятность безотказной работы соединённых узлов
+"""
 
 class Node:
     """Узел в цепи"""
 
     @staticmethod
     def list(*probabilities):
+        """
+        Возвращает list из Nodes с заданными вероятностями
+        """
+
         return list(Node(node[1], node[0]) for node in enumerate(probabilities))
 
     @property
