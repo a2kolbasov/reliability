@@ -13,8 +13,9 @@ class Node:
         """
         Возвращает list из Nodes с заданными вероятностями
         """
-
-        return list(Node(node[1], node[0]) for node in enumerate(probabilities))
+        return list(Node(
+            node[1], str(node[0])
+        ) for node in enumerate(probabilities))
 
     @property
     def p(self) -> float:
@@ -23,7 +24,8 @@ class Node:
 
     @p.setter
     def p(self, probability: float):
-        self._p = probability if (0 <= probability <= 1) else 0 if probability < 0 else 1
+        assert 0 <= probability <= 1
+        self._p = probability
 
     @property
     def q(self):
