@@ -63,8 +63,8 @@ class Node:
 
     def __and__(self, other):
         """Последовательное соединение"""
-        q = self.q + other.q
-        return Node(1 - q)
+        p = self.p * other.p
+        return Node(p)
 
     def __str__(self):
         return "P{name} = {p}".format(p=self.p, name="({})".format(self.name) if self.name != '' else '')
