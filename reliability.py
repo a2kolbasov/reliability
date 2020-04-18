@@ -8,12 +8,12 @@
 class Node:
     """Узел в цепи"""
 
-    @staticmethod
-    def list(*probabilities):
+    @classmethod
+    def list(cls, *probabilities):
         """
         Возвращает list из Nodes с заданными вероятностями
         """
-        return list(Node(
+        return list(cls(
             node[1], str(node[0])
         ) for node in enumerate(probabilities))
 
@@ -24,6 +24,7 @@ class Node:
 
     @p.setter
     def p(self, probability: float):
+        """Вероятность безотказной работы"""
         assert 0 <= probability <= 1
         self._p = probability
 
@@ -34,6 +35,7 @@ class Node:
 
     @q.setter
     def q(self, probability):
+        """Вероятность отказа"""
         self.p = 1 - probability
 
     def __init__(self, p: float, name: str = ''):
@@ -61,12 +63,12 @@ class Node:
     def __or__(self, other):
         """Параллельное соединение"""
         q = self.q * other.q
-        return Node(1 - q)
+        return self.__class__(1 - q)
 
     def __and__(self, other):
         """Последовательное соединение"""
         p = self.p * other.p
-        return Node(p)
+        return self.__class__(p)
 
     def __str__(self):
         return "P{name} = {p}".format(p=self.p, name="({})".format(self.name) if self.name != '' else '')
