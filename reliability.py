@@ -74,6 +74,7 @@ class Node:
         if p is None:
             raise Exception("Не задана вероятность")
 
+        p = float(p)
         if 0 <= p <= 1:
             self.p = p
             self.name = str(name)
@@ -100,3 +101,7 @@ class Node:
 
     def __str__(self):
         return "P{name} = {p}".format(p=self.p, name="({})".format(self.name) if self.name != '' else '')
+
+    def __float__(self):
+        """Вероятность безотказной работы узла"""
+        return self.p
