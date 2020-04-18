@@ -17,6 +17,32 @@ class Node:
             node[1], str(node[0])
         ) for node in enumerate(probabilities))
 
+    @classmethod
+    def parallel(cls, *probabilities: float):
+        """
+        Соединить узлы параллельно в единый блок
+        :param probabilities: Вероятность безотказной работы присоединяемого узла
+        :return: Единый блок
+        """
+        nodes = cls.list(*probabilities)
+        final_node = cls(0)
+        for node in nodes:
+            final_node |= node
+        return final_node
+
+    @classmethod
+    def serial(cls, *probabilities: float):
+        """
+        Соединить узлы последовательно в единый блок
+        :param probabilities: Вероятность безотказной работы присоединяемого узла
+        :return: Единый блок
+        """
+        nodes = cls.list(*probabilities)
+        final_node = cls(1)
+        for node in nodes:
+            final_node &= node
+        return final_node
+
     @property
     def p(self) -> float:
         """Вероятность безотказной работы"""
