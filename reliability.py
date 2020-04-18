@@ -9,7 +9,7 @@ class Node:
     """Узел в цепи"""
 
     @classmethod
-    def list(cls, *probabilities):
+    def list(cls, *probabilities: float) -> list:
         """
         Возвращает list из Nodes с заданными вероятностями
         """
@@ -55,9 +55,11 @@ class Node:
             raise Exception("Неверная вероятность")
 
     def __add__(self, other):
+        """Параллельное соединение"""
         return self | other
 
     def __mul__(self, other):
+        """Последовательное соединение"""
         return self & other
 
     def __or__(self, other):
